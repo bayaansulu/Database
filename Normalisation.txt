@@ -1,0 +1,52 @@
+Normalisation:
+
+1. Company: Company_ID -> Company_Name Superkeys: [Company_ID], [Company_ID, Company_Name] 
+Key: Company_ID
+
+2. Provider: Provider_ID -> [Company_ID, Provider_FN, Provider_LN] Superkeys: [Provider_ID], [Provider_ID, Company_ID], [Provider_ID, Provider_FN], [Provider_ID, Provider_LN], [Provider_ID, Company_ID, Provider_FN], [Provider_ID, Company_ID, Provider_LN], [Provider_ID, Provider_FN, Provider_LN], [Company_ID, Provider_FN, Provider_LN], [Provider_ID, Provider_FN, Provider_LN, Company_ID] 
+Key: Provider_ID
+
+3. Seller: Seller_ID -> [Seller_FN, Seller_LN, Provider_ID] Superkeys: [Seller_ID], [Seller_ID, Seller_FN], [Seller_ID, Seller_LN], [Seller_ID, Provider_ID], [Seller_ID, Seller_FN, Seller_LN], [Seller_ID, Seller_FN, Provider_ID], [Seller_FN, Seller_LN, Provider_ID], [Seller_ID, Seller_LN, Provider_ID], [Seller_ID, Seller_FN, Seller_LN, Provider_ID] 
+Key: Seller_ID
+
+4. Customer: Customer_ID -> [Customer_FN, Customer_LN, Seller_ID] Superkeys: [Customer_ID], [Customer_ID, Customer_FN], [Customer_ID, Customer_LN], [Customer_ID, Customer_FN, Customer_LN], [Customer_ID, Customer_FN, Seller_ID], [Customer_ID, Customer_LN, Seller_ID], [Customer_ID, Customer_FN, Customer_LN, Seller_ID] 
+Key: Customer_ID
+
+5. Customer_Info: Customer_Phone -> Customer_ID Superkeys: [Customer_Phone], [Customer_ID, Customer_Phone] 
+Key: Customer_Phone
+
+6. Wishlist: Customer_ID -> [Product_ID] Superkeys: [Customer_ID], [Customer_ID, Product_ID] 
+Key: Customer_ID
+
+7. Product: Product_ID -> [Product_Name, Company_ID, Seller_ID] Superkeys: [Product_ID], [Product_ID, Product_Name], [Product_ID, Company_ID], [Product_ID, Seller_ID], [Product_Name, Company_ID], [Product_ID, Product_Name, Company_ID], [Product_ID, Product_Name, Seller_ID], [Product_Name, Company_ID, Seller_ID], [Product_ID, Company_ID, Seller_ID], [Product_ID, Product_Name, Company_ID, Seller_ID] 
+Key: Product_ID
+
+8. Product_Info: Product_ID -> [Pr_Price, Pr_Quantity] Superkeys: [Product_ID], [Product_ID, Pr_Price], [Product_ID, Pr_Quantity], [Product_ID, Pr_Price, Pr_Quantity] 
+Key: Product_ID
+
+9. Comments: Comment_ID -> Product_ID, Rating Superkeys: [Comment_ID], [Comment_ID, Product_ID], [Comment_ID, Rating], [Comment_ID, Product_ID, Rating] 
+Key: Comment_ID
+
+10. Payment: Payment_ID -> [Payment_Date, Total_Price, Customer_ID] Superkeys: [Payment_ID], [Payment_ID, Payment_Date], [Payment_ID, Total_Price], [Payment_ID, Customer_ID, Payment_Date], [Payment_ID, Customer_ID, Total_Price], [Payment_ID, Payment_Date, Total_Price], [Payment_ID, Customer_ID], [Payment_ID, Payment_Date, Total_Price, Customer_ID] 
+Key: Payment_ID
+
+11. Order: Order_ID -> [Product_ID, Order_Quantity, Customer_ID] Superkeys: [Order_ID], [Order_ID, Customer_ID], [Order_ID, Product_ID], [Order_ID, Order_Quantity], [Order_ID, Customer_ID, Product_ID], [Order_ID, Customer_ID, Order_Quantity], [Order_ID, Product_ID, Order_Quantity], [Order_ID, Product_ID, Order_Quantity, Customer_ID] 
+Key: Order_ID
+
+12. Shopping Card: Card_ID -> [Customer_ID, Balance] Superkeys: [Card_ID], [Card_ID, Customer_ID], [Card_ID, Balance], [Customer_ID, Balance], [Card_ID, Customer_ID, Balance] 
+Key: Card_ID
+
+13. Shipment: Shipment_ID -> [Order_ID, Delivery_time, Sending_time] Superkeys: [Shipment_ID], [Shipment_ID, Order_ID], [Shipment_ID, Delivery_time], [Shipment_ID, Sending_time], [Order_ID, Delivery_time], [Order_ID, Sending_time], [Shipment_ID, Order_ID, Delivery_time], [Shipment_ID, Order_ID, Sending_time], [Shipment_ID, Delivery_time, Sending_time], [Order_ID, Delivery_time, Sending_time], [Shipment_ID, Order_ID, Delivery_time, Sending_time] 
+Key: Shipment_ID
+
+14. Delivery: Delivery_ID -> Shipment_ID Superkeys: [Delivery_ID], [Delivery_ID, Shipment_ID] 
+Key: Delivery_ID
+
+15. Address: Address_ID -> [Delivery_ID, Country, City] Superkeys: [Address_ID], [Address_ID, Delivery_ID], [Address_ID, Country], [Address_ID, City], [Delivery_ID, Country], [Delivery_ID, City], [Address_ID, Delivery_ID, Country], [Address_ID, Country, City], [Address_ID, Delivery_ID, City], [Delivery_ID, Country, City], [Address_ID, Delivery_ID, Country, City] 
+Key: Address_ID
+
+16. Driver_Info: Driver_ID -> [Driver_FN, Driver_LN, Delivery_ID] Superkeys: [Driver_ID], [Driver_ID, Driver_FN], [Driver_ID, Driver_LN], [Driver_ID, Delivery_ID], [Delivery_ID, Driver_FN], [Delivery_ID, Driver_LN], [Driver_ID, Driver_FN, Delivery_ID], [Driver_ID, Driver_LN, Delivery_ID], [Delivery_ID, Driver_FN, Driver_LN], [Driver_ID, Driver_FN, Driver_LN], [Driver_ID, Driver_FN, Driver_LN, Delivery_ID] 
+Key: Driver_ID
+
+17. Post: Postal_ID -> Shipment_ID, Postcode Superkeys: [Postal_ID], [Postal_ID, Shipment_ID], [Postal_ID, Postcode], [Shipment_ID, Postcode], [Postal_ID, Shipment_ID, Postcode] 
+Key: Postal_ID
